@@ -4,9 +4,8 @@
       <div class="footer-menu">
         <nav class="footer-nav">
           <router-link to="/guide" a href="#" class="footer-link">서비스 이용가이드</router-link>
-          <a href="#" class="footer-link">이용약관</a>
-          <a href="#" class="footer-link highlight">개인정보처리방침</a>
-          <a href="#" class="footer-link">운영정책</a>
+          <router-link to="/terms/of-service" a href="#" class="footer-link">이용약관</router-link>
+          <router-link to="/terms/privacy-policy" a href="#" class="footer-link">개인정보처리방침</router-link>
           <a href="#" class="footer-link ad-inquiry">
             광고문의
             <span class="ad-badge">FREE</span>

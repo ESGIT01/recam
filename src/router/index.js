@@ -33,6 +33,9 @@ import ReviewerApply from '@/views/mypage/ReviewerApply.vue'
 import ReviewerDibs from '@/views/mypage/ReviewerDibs.vue'
 import AdDashboard from '@/views/adpage/AdDashboard.vue'
 import CampaignRegister from '@/views/campaignregister/CampaignRegister.vue'
+import TermsOfService from '@/views/TermsOfService.vue'
+import TermsOfPrivacypolicy from '@/views/TermsOfPrivacypolicy.vue'
+import CampaignDetail from '@/views/CampaignDetail.vue'
 
 const routes = [
   {
@@ -219,6 +222,22 @@ const routes = [
     path: '/ad-campaignregister',
     name: '/ad-campaignregister',
     component: CampaignRegister
+  },
+  //약관 내용 등
+  {
+    path: '/terms/of-service',
+    name: '/terms/of-service',
+    component: TermsOfService
+  },
+  {
+    path: '/terms/privacy-policy',
+    name: '/terms/privacy-policy',
+    component: TermsOfPrivacypolicy
+  },
+  {
+    path: '/ss',
+    name: '/ss',
+    component: CampaignDetail
   }
 ]
 

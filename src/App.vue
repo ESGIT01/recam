@@ -55,7 +55,7 @@ html, body {
   font-size: 16px;
   line-height: 1.5;
   color: var(--gray-dark);
-  background-color: var(--gray-light);
+  background-color : #FFFFFF;
   width: 100%;
   height: 100%;
   overflow-x: hidden;
