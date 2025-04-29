@@ -1,10 +1,11 @@
 <template>
   <div class="app">
-    <SiteHeader v-if="!isAuthPage" />
+  <!--만약 헤더와 푸터가 AuthPage거나 PartnerPage면 랜더링이 안됨-->
+    <SiteHeader v-if="!isAuthPage && !isPartnerPage" />
     <main class="main-content">
       <router-view />
     </main>
-    <SiteFooter v-if="!isAuthPage" />
+    <SiteFooter v-if="!isAuthPage && !isPartnerPage" />
   </div>
 </template>
 
@@ -18,14 +19,30 @@ export default {
     SiteHeader,
     SiteFooter
   },
+  watch: {
+    $route() {
+      window.scrollTo(0, 0);
+    }
+  },
   computed: {
     currentYear() {
       return new Date().getFullYear();
     },
     isAuthPage() {
-      // 로그인 또는 회원가입 페이지인지 확인
+      //로그인 페이지인지 확인하는 부분, 추후 AuthPage 관련 부분은 PartnerPage처럼 변경해야할 것 같음
       return ['/login', '/select-type', '/reviewer-signup', '/advertiser-signup'].includes(this.$route.path);
+    },
+    isPartnerPage() {
+      // 파트너센터 페이지인지 확인 - 경로가 /partner로 시작하는지 체크
+      return this.$route.path.startsWith('/partner');
     }
+  },
+  // App.vue script 부분에 추가
+  mounted() {
+    window.scrollTo(0, 0);
+  },
+  updated() {
+    window.scrollTo(0, 0);
   }
 };
 </script>
@@ -38,6 +55,7 @@ export default {
 :root {
   --primary-light: #48CFCB;
   --primary: #229799;
+  --primary-dark: #229799;
   --gray-light: #F5F5F5;
   --gray-dark: #424242;
 }

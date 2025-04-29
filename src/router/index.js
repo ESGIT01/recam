@@ -1,29 +1,29 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 // 메인 페이지
-import HomeView from '@/views/HomeView.vue'
+import HomeView from '@/views/home/HomeView.vue'
 
 // 메인 카테고리 페이지
-import DeliveryView from '@/views/DeliveryView.vue'
-import VisitView from '@/views/VisitView.vue'
-import PurchaseView from '@/views/PurchaseView.vue'
-import ReporterView from '@/views/ReporterView.vue'
-import NoticeView from '@/views/NoticeView.vue'
+import DeliveryView from '@/views/category/DeliveryView.vue'
+import VisitView from '@/views/category/VisitView.vue'
+import PurchaseView from '@/views/category/PurchaseView.vue'
+import ReporterView from '@/views/category/ReporterView.vue'
+import NoticeView from '@/views/utilitycategory/NoticeView.vue'
 
 // 캠페인 상세 페이지
 import CampaignDetailView from '@/views/CampaignDetailView.vue'
 
 // 기타 유틸리티 페이지
-import TodayView from '@/views/TodayView.vue'
-import EventView from '@/views/EventView.vue'
-import GuideView from '@/views/GuideView.vue'
-import LoginView from '@/views/LoginView.vue'
-import SelectType from '@/views/SelectType.vue'
-import ReviewerSignup from '@/views/ReviewerSignup.vue'
-import ReviewerSigncomplete from '@/views/ReviewerSigncomplete.vue'
-import AdvertiserSignup from '@/views/AdvertiserSignup.vue'
-import AdvertiserSigncomplete from '@/views/AdvertiserSigncomplete.vue'
-import CSView from '@/views/CSView.vue'
+import TodayView from '@/views/utilitycategory/TodayView.vue'
+import EventView from '@/views/utilitycategory/EventView.vue'
+import GuideView from '@/views/utilitycategory/GuideView.vue'
+import LoginView from '@/views/auth/LoginView.vue'
+import SelectType from '@/views/auth/SelectType.vue'
+import ReviewerSignup from '@/views/auth/ReviewerSignup.vue'
+import ReviewerSigncomplete from '@/views/auth/ReviewerSigncomplete.vue'
+import AdvertiserSignup from '@/views/auth/AdvertiserSignup.vue'
+import AdvertiserSigncomplete from '@/views/auth/AdvertiserSigncomplete.vue'
+import CSView from '@/views/utilitycategory/CSView.vue'
 import ReviewerProfile from '@/views/mypage/ReviewerProfile.vue'
 import ReviewerAttendance from '@/views/mypage/ReviewerAttendance.vue'
 import ReviewerPoint from '@/views/mypage/ReviewerPoint.vue'
@@ -31,11 +31,28 @@ import ReviewerPenalty from '@/views/mypage/ReviewerPenalty.vue'
 import ReviewerEdit from '@/views/mypage/ReviewerEdit.vue'
 import ReviewerApply from '@/views/mypage/ReviewerApply.vue'
 import ReviewerDibs from '@/views/mypage/ReviewerDibs.vue'
-import AdDashboard from '@/views/adpage/AdDashboard.vue'
 import CampaignRegister from '@/views/campaignregister/CampaignRegister.vue'
-import TermsOfService from '@/views/TermsOfService.vue'
-import TermsOfPrivacypolicy from '@/views/TermsOfPrivacypolicy.vue'
+import TermsOfService from '@/views/terms/TermsOfService.vue'
+import TermsOfPrivacypolicy from '@/views/terms/TermsOfPrivacypolicy.vue'
 import CampaignDetail from '@/views/CampaignDetail.vue'
+
+// 파트너센터 레이아웃
+import PartnerLayout from '@/layouts/PartnerLayout.vue'
+import DashboardView from '@/views/partner/DashboardView.vue'
+import AllcampaignsView from '@/views/partner/AllcampaignsView.vue'
+import WatingApprovalView from '@/views/partner/WatingApprovalView.vue'
+import ActiveCampaignsView from '@/views/partner/ActiveCampaignsView.vue'
+import CompletedCampaignsView from '@/views/partner/CompletedCampaignsView.vue'
+import RegisteredReviewsView from '@/views/partner/RegisteredReviewsView.vue'
+import NoticeListView from '@/views/partner/NoticeListView.vue'
+import InquiryView from '@/views/partner/InquiryView.vue'
+import FaqView from '@/views/partner/FaqView.vue'
+import EditProfileView from '@/views/partner/EditProfileView.vue'
+
+// 임시 빈 컴포넌트들 - 나중에 실제 구현할 때 대체
+const EmptyComponent = { 
+  template: '<div class="empty-page" style="padding: 30px;"><h2>페이지 준비 중</h2><p>이 페이지는 아직 개발 중입니다.</p></div>' 
+}
 
 const routes = [
   {
@@ -214,11 +231,6 @@ const routes = [
   },
   //광고주 페이지
   {
-    path: '/ad-dashboard',
-    name: '/ad-dashboard',
-    component: AdDashboard
-  },
-  {
     path: '/ad-campaignregister',
     name: '/ad-campaignregister',
     component: CampaignRegister
@@ -238,6 +250,83 @@ const routes = [
     path: '/ss',
     name: '/ss',
     component: CampaignDetail
+  },
+  
+  // 파트너센터 라우트 (새로 추가)
+  {
+    path: '/partner',
+    component: PartnerLayout,
+    children: [
+      {
+        path: '',
+        redirect: '/partner/dashboard'
+      },
+      {
+        path: 'dashboard',
+        name: 'partner-dashboard',
+        component: DashboardView // 실제 컴포넌트 생성 전까지 임시 컴포넌트 사용
+      },
+      {
+        path: 'campaigns/all',
+        name: 'campaigns-all',
+        component: AllcampaignsView
+      },
+      {
+        path: 'campaigns/pending',
+        name: 'campaigns-pending',
+        component: WatingApprovalView
+      },
+      {
+        path: 'campaigns/active',
+        name: 'campaigns-active',
+        component: ActiveCampaignsView
+      },
+      {
+        path: 'campaigns/completed',
+        name: 'campaigns-completed',
+        component: CompletedCampaignsView
+      },
+      {
+        path: 'reviews',
+        name: 'partner-reviews',
+        component: RegisteredReviewsView
+      },
+      {
+        path: 'notices',
+        name: 'partner-notices',
+        component: NoticeListView
+      },
+      {
+        path: 'inquiry',
+        name: 'partner-inquiry',
+        component: InquiryView
+      },
+      {
+        path: 'faq',
+        name: 'partner-faq',
+        component: FaqView
+      },
+      {
+        path: 'profile',
+        name: 'partner-profile',
+        component: EditProfileView
+      },
+      {
+        path: 'proxy-campaign',
+        name: 'proxy-campaign',
+        component: EmptyComponent
+      },
+      {
+        path: 'blog-agency',
+        name: 'blog-agency',
+        component: EmptyComponent
+      },
+      {
+        path: 'blog-branding',
+        name: 'blog-branding',
+        component: EmptyComponent
+      }
+    ]
   }
 ]
 
@@ -247,7 +336,7 @@ const router = createRouter({
   scrollBehavior() {
     // 페이지 전환 시 항상 맨 위로 스크롤
     return { top: 0 }
-  }
+  },
 })
 
 export default router
